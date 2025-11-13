@@ -63,8 +63,8 @@ const server = http.createServer(async (req, res) => {
                 console.log('Spam erkannt. Ignoriert.');
                 // res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
                 // res.end("Thanks for your message... NOT");
-                res.writeHead(404);
-                res.end("Not found...");
+                res.statusCode = 404;
+                res.end('Not found');
                 return;
             }
             
