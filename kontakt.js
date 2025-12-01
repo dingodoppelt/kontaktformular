@@ -57,7 +57,8 @@ const server = http.createServer(async (req, res) => {
             const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress;
             console.log('Formulardaten erhalten:', JSON.stringify(plainData, null, 2), ip);
             
-            if (checkSpam(parsedData.email) ||
+            if (req.body.website ||
+                checkSpam(parsedData.email) ||
                 checkSpam(parsedData.nachricht)
             ) {
                 console.log('Spam erkannt. Ignoriert.');
