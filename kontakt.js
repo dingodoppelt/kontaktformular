@@ -71,7 +71,7 @@ const server = http.createServer(async (req, res) => {
 		if (NFT_SET) {
 		    console.log(`${ip} wird im set ${NFT_SET} gebannt`);
 		    exec(`nft add element ${NFT_SET} { ${ip} timeout 24h }`, (err, stdout, stderr) => {
-			if (err) console.error(err);
+				if (err) console.error(err);
 		    });
 		}
                 return;
