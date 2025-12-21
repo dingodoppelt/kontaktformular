@@ -2,6 +2,7 @@ const http = require('http');
 const https = require('https');
 const querystring = require('querystring');
 const fs = require('fs/promises');
+const { exec } = require('node:child_process');
 const blocklist = require('fs').readFileSync('blocklist.txt', 'utf-8')
 .split('\n')
 .filter(Boolean);
@@ -11,6 +12,7 @@ const NTFY_URL = process.env.NTFY_URL;
 const NTFY_TOKEN = process.env.NTFY_TOKEN;
 const NTFY_PORT = process.env.NTFY_PORT;
 const SERV_PORT = process.env.SERV_PORT;
+const NFT_SET = process.env.NFT_SET;
 
 function checkSpam(text) {
     const txt = (text ?? '').toLowerCase();
@@ -66,6 +68,12 @@ const server = http.createServer(async (req, res) => {
                 // res.end("Thanks for your message... NOT");
                 res.statusCode = 404;
                 res.end('Not found');
+		if (NFT_SET) {
+		    console.log(`${ip} wird im set ${NFT_SET} gebannt`);
+		    exec(`nft add element ${NFT_SET} { ${ip} timeout 24h }`, (err, stdout, stderr) => {
+			if (err) console.error(err);
+		    });
+		}
                 return;
             }
             
