@@ -70,6 +70,7 @@ const server = http.createServer(async (req, res) => {
                 res.end('Not found');
 		if (NFT_SET) {
 		    console.log(`${ip} wird im set ${NFT_SET} gebannt`);
+		    await fs.appendFile('blocked-ips.txt', ip);
 		    exec(`nft add element ${NFT_SET} { ${ip} }`, (err, stdout, stderr) => {
 				if (err) console.error(err);
 		    });
