@@ -4,6 +4,7 @@ const querystring = require('querystring');
 const fs = require('fs/promises');
 const { exec } = require('node:child_process');
 const blocklist = require('fs').readFileSync('blocklist.txt', 'utf-8')
+.toLowerCase()
 .split('\n')
 .filter(Boolean);
 // Set your env variables in your systemd unit like so:
