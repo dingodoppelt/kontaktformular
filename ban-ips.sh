@@ -1,7 +1,12 @@
 #!/bin/bash
 
+if (( $EUID != 0 )); then
+    echo "Please run as root"
+    exit
+fi
+
 if [[ $# -ne 1 ]]; then
-	echo "No file supplied as first argument, trying default (banned.txt)..."
+	echo "No file supplied as first argument, trying default (./banned.txt)..."
         if [[ -e "banned.txt" ]]; then
 		BANLIST="banned.txt"
 	else
