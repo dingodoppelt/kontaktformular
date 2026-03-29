@@ -14,6 +14,7 @@ const NTFY_TOKEN = process.env.NTFY_TOKEN;
 const NTFY_PORT = process.env.NTFY_PORT;
 const SERV_PORT = process.env.SERV_PORT;
 const NFT_SET = process.env.NFT_SET;
+const NTFY_AUTH_TOKEN = process.env.NTFY_AUTH_TOKEN;
 
 function checkSpam(text) {
     const txt = (text ?? '').toLowerCase();
@@ -31,6 +32,7 @@ function sendToNtfy(message) {
         headers: {
             'Content-Type': 'text/plain',
             'Content-Length': data.length,
+	    'Authorization': `Bearer ${NTFY_AUTH_TOKEN}`
         }
     };
     
