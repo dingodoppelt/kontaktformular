@@ -9,6 +9,8 @@ NTFY_PORT
 NTFY_URL
 NTFY_TOKEN
 SERV_PORT
+NTFY_AUTH_TOKEN
+NFT_SET
 ```
 
 <sub>example systemd unit:</sub>
@@ -22,7 +24,7 @@ ExecStart=/usr/bin/node /path/to/kontaktformular/kontakt.js
 Restart=always
 RestartSec=5
 User=username
-Environment="NODE_ENV=production" "NTFY_URL=push.example.com" "NTFY_TOKEN=/secret" "NTFY_PORT=443" "SERV_PORT=12345"
+Environment="NODE_ENV=production" "NTFY_URL=push.example.com" "NTFY_TOKEN=/secret" "NTFY_PORT=443" "SERV_PORT=12345" "NTFY_AUTH_TOKEN=tk_...."
 WorkingDirectory=/path/to/kontaktformular/
 SyslogIdentifier=kontaktformular-nodejs
 
